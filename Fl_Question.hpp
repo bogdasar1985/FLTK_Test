@@ -4,7 +4,6 @@
 #include <Fl/Fl_Window.H>
 #include <Fl/Fl_Button.H>
 #include <Fl/Fl_Box.H>
-#include <Fl/Fl_Radio_Round_Button.H>
 #include <stdio.h>
 enum class QuestionType
 {
@@ -18,6 +17,8 @@ class Fl_Question : public Fl_Group
 public:
     Fl_Question(const Fl_Window* window, const char *question_text, QuestionType qt);
     virtual int check_answer() = 0;
+    virtual void delete_widgets() = 0;
+    virtual void init_widgets() = 0;
     void set_question(const char* q);
     QuestionType get_type();
 protected:
