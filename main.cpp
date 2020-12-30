@@ -16,7 +16,7 @@ enum
 {
     spacing_w = 20,
     spacing_h = 20,
-    text_display_w = 600,
+    text_display_w = 940,
     text_display_h = 50,
     radio_round_button_w = 20,
     radio_round_button_h = 20,
@@ -26,52 +26,52 @@ enum
 
 const char *questions[]
 {
-    "2 + 2 = ?",
-    "3 + 5 = ?",
-    "2 + 7 = ?",
-    "4 + 9 = ?",
-    "3 + 1 = ?",
-    "В чём смысл жизни?"
+    "Какая файловая система используется в современных версиях Windows?",
+    "Что такое системный вызов?",
+    "Что из этого, является интерфейсами системных вызовов?",
+    "Как называется абстракция, используемая для работы с сетью в Linux?",
+    "Как называется \"файловая система\" используемая для получения информации о системе в Linux?",
+    "Чем выражается файловый дескриптор в Linux?"
 };
 
 const char* answers[][4]
 {
-    {"3", "4", "1", "2"},
-    {"8", "1", "4", "9"},
-    {"1", "0", "9", "12"},
-    {"13", "5", "-4", "1"},
-    {"11", "4", "5", "2"},
-    {"1", "2", "3", "4"}
+    {"FAT32", "NTFS", "ext4", "ZFS"},
+    {"Взаимодействие внутри ядра", "Сигнал от ядра OC к прикладной программе", "Обращение одной прикладной программы к другой", "Обращение прикладной программы к ядру OC"},
+    {"POSIX", "ISO", "Win32API", "REST API"},
+    {"Канал", "Файл", "Сокет", "Драйвер"},
+    {"proc", "usr", "sys", "dev"},
+    {"Именем файла", "Числом", "Адресом памяти", "Полным путём к файлу"}
 };
 
 int right_answers[]
 {
     1,
-    0,
+    3,
+    -1,
     2,
     0,
-    1,
-    -1
+    1
 };
 
 int right_answers_many[][4]
 {
     {-1,-1,-1,-1},
     {-1,-1,-1,-1},
+    {1,0,1,0},
     {-1,-1,-1,-1},
     {-1,-1,-1,-1},
-    {-1,-1,-1,-1},
-    {1, 1, 0, 1}
+    {-1,-1,-1,-1}
 };
 
 QuestionType question_types[]
 {
     QuestionType::SINGLE_CHOICE,
     QuestionType::SINGLE_CHOICE,
+    QuestionType::MANY_CHOICE,
     QuestionType::SINGLE_CHOICE,
     QuestionType::SINGLE_CHOICE,
-    QuestionType::SINGLE_CHOICE,
-    QuestionType::MANY_CHOICE
+    QuestionType::SINGLE_CHOICE
 };
 
 static void _check_callback(Fl_Widget *widget, void *user)
@@ -90,7 +90,7 @@ static void _check_callback(Fl_Widget *widget, void *user)
     if(question_number == count_of_questions-1)
     {
         char *res = (char*)malloc(5);
-        sprintf(res, "%d/%d", counter, count_of_questions);
+        sprintf(res, "Итого: %d/%d", counter, count_of_questions);
         (*question)->set_question(res);
         return;
     }
@@ -122,10 +122,10 @@ static void _check_callback(Fl_Widget *widget, void *user)
 
 int main()
 {
-    int win_w = 640;
-    int win_h = 480;
+    int win_w = 980;
+    int win_h = 640;
 
-    Fl_Window *window = new Fl_Window(win_w, win_h, "TEST");
+    Fl_Window *window = new Fl_Window(win_w, win_h, "Тест: операционные системы.");
     Fl_Button *button = new Fl_Button(window->w() / 2 - button_w / 2, window->h() - button_h - spacing_h, button_w, button_h, "Check!");
     
     Fl_Single_Choice_Question *question = new Fl_Single_Choice_Question(window, questions[0]);

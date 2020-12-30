@@ -29,7 +29,7 @@ protected:
     {
         spacing_w = 20,
         spacing_h = 20,
-        text_display_w = 600,
+        text_display_w = 940,
         text_display_h = 50,
         radio_round_button_w = 20,
         radio_round_button_h = 20,
