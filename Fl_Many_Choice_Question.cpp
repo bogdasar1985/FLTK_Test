@@ -3,6 +3,18 @@ Fl_Many_Choice_Question::Fl_Many_Choice_Question(Fl_Window *window, const char *
 
 int Fl_Many_Choice_Question::check_answer()
 {
+    int count = 0;  // Кол-во выбранных ответов.
+    for(int i = 0; i < 4; i++)
+    {
+        if(answers[i]->value() == 1)
+        {
+            count++;
+        }
+    }
+    if(count == 0)
+    {
+        return -1;  // Если ни одного ответа не выбрано
+    }
     for(int i = 0; i < 4; i++)
     {
         if(answers[i]->value() != right_answers[i])
@@ -11,6 +23,17 @@ int Fl_Many_Choice_Question::check_answer()
         }
     }
     return 1;
+};
+
+void Fl_Many_Choice_Question::reset_answers()
+{
+    for(int i = 0; i < 4; i++)
+    {
+        if(answers[i]->value() == 1)
+        {
+            answers[i]->value(0);
+        }
+    }
 };
 
 void Fl_Many_Choice_Question::set_answers(const char* answer1, const char* answer2, const char* answer3, const char* answer4)

@@ -26,18 +26,28 @@ Fl_Single_Choice_Question::Fl_Single_Choice_Question(
 
 int Fl_Single_Choice_Question::check_answer()
 {
-    // Повторение!
+    int count = 0;  // Кол-во выбранных ответов.
+    for(int i = 0; i < 4; i++)
+    {
+        if(answers[i]->value() == 1)
+        {
+            count++;
+        }
+    }
+    if(count == 0)
+    {
+        return -1;  // Если ни одного ответа не выбрано
+    }
     if((this->answers[this->right_answ]->value() == 1))
     {
-        for(int i = 0; i < 4; i++)
-        {
-            if(this->answers[i]->value())
-            {
-                this->answers[i]->value(0);
-            }
-        }
+        //this->answers[this->right_answ]->value(0);
         return 1;
     }
+    return 0;
+}
+
+void Fl_Single_Choice_Question::reset_answers()
+{
     for(int i = 0; i < 4; i++)
     {
         if(this->answers[i]->value())
@@ -45,7 +55,6 @@ int Fl_Single_Choice_Question::check_answer()
             this->answers[i]->value(0);
         }
     }
-    return 0;
 }
 
 void Fl_Single_Choice_Question::set_answers(const char* answer1, const char* answer2, const char* answer3, const char* answer4)
