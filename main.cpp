@@ -101,7 +101,7 @@ static void _check_callback(Fl_Widget *widget, void *user)
         elements.prompt_display->label("ВЕРНО");
         counter++;
     }
-    if((*question)->check_answer() == -1)
+    else if((*question)->check_answer() == -1)
     {
         elements.prompt_display->label("Выберите хотя-бы один вариант ответа!");
         return;
