@@ -112,7 +112,7 @@ static void _check_callback(Fl_Widget *widget, void *user)
     }
     if(question_number == count_of_questions-1)
     {
-        char *res = (char*)malloc(5);
+        char *res = (char*)malloc(18);
         sprintf(res, "Итого: %d/%d", counter, count_of_questions);
         (*question)->set_question(res);
         elements.check_button->hide();

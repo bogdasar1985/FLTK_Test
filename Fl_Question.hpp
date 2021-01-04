@@ -25,7 +25,6 @@ public:
 protected:
     Fl_Box *question;
     QuestionType question_type;
-    //Fl_Button *enter;
     enum
     {
         spacing_w = 20,
