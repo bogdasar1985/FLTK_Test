@@ -13,6 +13,7 @@ int counter = 0;    // count of right answers
 int count_of_questions = 6;
 struct widgets
 {
+    Fl_Window *window;
     Fl_Button *check_button;
     Fl_Button *next_button;
     Fl_Button *prompt_button;
@@ -163,8 +164,9 @@ int main()
     int win_w = 980;
     int win_h = 640;
 
-    Fl_Window *window = new Fl_Window(win_w, win_h, "Тест: операционные системы.");
-    elements.check_button = new Fl_Button(window->w() / 2 - button_w / 2, window->h() - button_h - spacing_h, button_w, button_h, "Check!");
+    elements.window = new Fl_Window(win_w, win_h, "Тест: операционные системы.");
+
+    elements.check_button = new Fl_Button(elements.window->w() / 2 - button_w / 2, elements.window->h() - button_h - spacing_h, button_w, button_h, "Check!");
     elements.next_button = new Fl_Button(win_w - button_w - spacing_w, elements.check_button->y(), button_w, button_h, "Next");
     elements.prompt_button = new Fl_Button(spacing_w, elements.next_button->y(), button_w, button_h, "Prompt!");
 
@@ -172,7 +174,7 @@ int main()
     elements.prompt_display->box(FL_NO_BOX);
     elements.prompt_display->labelsize(18);
 
-    Fl_Single_Choice_Question *question = new Fl_Single_Choice_Question(window, questions[0]);
+    Fl_Single_Choice_Question *question = new Fl_Single_Choice_Question(elements.window, questions[0]);
     question->set_answers(answers[0][0], answers[0][1], answers[0][2], answers[0][3]);
     question->set_right_answer(right_answers[0]);
 
@@ -181,7 +183,7 @@ int main()
     elements.prompt_button->callback(_prompt_callback);
     elements.next_button->hide();
 
-    window->end();
-    window->show();
+    elements.window->end();
+    elements.window->show();
     return Fl::run();
 }
